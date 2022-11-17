@@ -46,32 +46,37 @@ class Database:
         
         @st.experimental_memo(ttl=600)
         def add(firstname, lastname, grade, lat, longi):
-            sql = ('INSERT INTO students(firstname, lastname, grade, longtitude, latitude)'
+            sql = ('INSERT INTO students(firstname, lastname, grade, latitude, longtitude)'
                         f' VALUES ( "{firstname}", "{lastname}", {grade}, {lat}, {longi} )')
             self.run_query(sql)
             self.conn.commit()
 
         return add(firstname, lastname, grade, lat, longi)
         
-    def update_record_with_id(self, id, field, value):
+    def update_record_with_id(self, id, values):
 
         #validation check to ensure id exists 
         rows = self.get_by_id(id)
-        st.write(rows)
         if not len(rows):
             st.write("data doesnot exist")
             return 
 
         @st.experimental_memo(ttl=600)
-        def update(id, field, value):
-            sql = f'UPDATE students SET {field} = {value} WHERE student_id = {id}'
+        def update(id, values):
+            
+            firstname, lastname, grade = values
 
-            if field in ("firstname", "lastname"):
-                sql = f'UPDATE students SET {field} = "{value}" WHERE student_id = {id}'
-
+            sql = f"""
+                    UPDATE STUDENTS 
+                    SET FIRSTNAME = "{firstname}",
+                        LASTNAME = "{lastname}",
+                        GRADE = "{grade}"
+                    WHERE student_id = {id}
+                """
             self.run_query(sql)
             self.conn.commit()
-        return update(id, field, value)
+
+        return update(id, values)
 
     def delete_with_id(self, id):
 
@@ -86,5 +91,13 @@ class Database:
 
 
 
+    def delete_all(self):
 
+        @st.experimental_memo(ttl=600)
+        def delete():
+            sql = f'Delete from students'
+            self.run_query(sql)
+            self.conn.commit()
+
+        return delete()
 
