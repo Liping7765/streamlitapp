@@ -1,5 +1,5 @@
 import streamlit as st
-from database import Database
+from database.database import Database
 import time
 
 
@@ -7,12 +7,11 @@ db = Database()
 rows = db.get_all()
 
 ids = [ row[0] for row in rows ]
+op2, op3, op4 = st.columns([4,2,4])
 
-op1, op2, op3 = st.columns([2,1,6])
-
-with op1:
-    selected_id = st.selectbox("ID", tuple(ids))
 with op2:
+    selected_id = st.selectbox("ID", tuple(ids))
+with op3:
     agree = st.checkbox('Edit')
 
 disabled = not agree
@@ -32,7 +31,7 @@ with st.form("update_form"):
     # grade = st.selectbox("Grade", (1,2,3,4,5))
     grade = st.text_input("Grade", disabled = disabled, value = student[3])
 
-    clicked = st.form_submit_button("Update Student")
+    clicked = st.form_submit_button("Update Student", disabled = disabled)
 
     data = [firstname, lastname, grade]
 

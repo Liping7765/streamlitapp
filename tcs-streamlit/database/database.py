@@ -26,14 +26,15 @@ class Database:
 
     # get records by id 
     def filter_by_id(self, id = 0):
+        @st.experimental_memo(ttl=600)
         def inner(id = 0):
             sql = f"SELECT * from students where student_id >= {id};"
             return self.run_query(sql)
         return inner(id)
 
     # get records by grade
-    def filter_by_grade(self, grade = 1):
-        def inner(grade = 1):
+    def filter_by_grade(self, grade):
+        def inner(grade):
             sql = f"SELECT * from students where grade = {grade};"
             return self.run_query(sql)
         return inner(grade)
