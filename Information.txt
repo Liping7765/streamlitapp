@@ -1,0 +1,34 @@
+# fix the node running issue 
+export NODE_OPTIONS=--openssl-legacy-provider
+
+
+#connect to aws instance 
+ssh -i "streamlit.pem" ubuntu@ec2-3-140-1-91.us-east-2.compute.amazonaws.com
+
+# database original data setup 
+
+create database tcs 
+
+CREATE TABLE IF NOT EXISTS students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    grade int,
+    latitude decimal(10,8),
+    longtitude decimal(10,8)
+    );
+
+
+INSERT INTO students(firstname, lastname, grade, latitude, longtitude)
+VALUES ("Jack", "Ma", 1, 40.743973, -74.040351);
+
+INSERT INTO students(firstname, lastname, grade, latitude, longtitude)
+VALUES ("Alice", "Wu", 4, 40.732365,-73.978553),
+("Peter", "Chen", 2, 40.637600, -73.990234),
+("John", "Johnson", 3, 40.811406,-73.953130),
+("Ethan", "Grainger", 1, 40.748517,-73.885985),
+("Kris", "Ali", 5, 40.815587,-74.093491);
+
+
+# fix npm typescript issues 
+npm install typescript --save-dev
