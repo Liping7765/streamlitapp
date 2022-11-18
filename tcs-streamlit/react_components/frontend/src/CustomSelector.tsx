@@ -1,13 +1,14 @@
-import { ComponentProps, Streamlit, withStreamlitConnection } from "streamlit-component-lib"
+import { Streamlit, withStreamlitConnection } from "streamlit-component-lib"
 import React from 'react';
 import { Select, Value } from 'baseui/select';
-
+import "./style.css"
 
 function CustomSelector() {
 
     const [value, setValue] = React.useState<Value>([]);
-    React.useEffect(() => Streamlit.setFrameHeight(200))
-    
+
+    React.useEffect(() => Streamlit.setFrameHeight(230))
+
     return (
         <>
         <Select
@@ -27,6 +28,11 @@ function CustomSelector() {
                 Streamlit.setComponentValue(value);
             }}
             value={value}
+        />
+
+        <img 
+        src= "https://blog.knoldus.com/wp-content/uploads/2020/10/React-featured.png"
+        className = "center"
         />
         </>
     );

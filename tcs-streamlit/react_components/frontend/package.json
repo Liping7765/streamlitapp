@@ -48,5 +48,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "."
+  "homepage": ".",
+  "devDependencies": {
+    "@types/react-virtualized": "^9.21.21"
+  }
 }

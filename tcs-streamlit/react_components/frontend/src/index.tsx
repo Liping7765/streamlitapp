@@ -1,6 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import CustomSlider from "./CustomSlider"
 import CustomSelector from "./CustomSelector"
 
 // Lots of import to define a Styletron engine and load the light theme of baseui
