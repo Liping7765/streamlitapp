@@ -33,6 +33,7 @@ function CustomSelector() {
         <img 
         src= "https://blog.knoldus.com/wp-content/uploads/2020/10/React-featured.png"
         className = "center"
+        alt='react_image'
         />
         </>
     );
