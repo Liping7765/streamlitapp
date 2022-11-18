@@ -7,7 +7,7 @@ from typing import Tuple
 # Now the React interface only accepts an array of 1 or 2 elements.
 _component_func = components.declare_component(
     "custom_selector",
-    url="http://localhost:3001",
+    url="http://3.133.104.15:3000",
 )
 
 

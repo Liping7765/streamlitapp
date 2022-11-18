@@ -1,7 +1,6 @@
 import streamlit as st
 from database.database import Database
 import random
-from decimal import Decimal
 
 with st.form("my_form"):
     col1, col2 = st.columns(2)
@@ -24,9 +23,9 @@ with st.form("my_form"):
     elif clicked:
         db = Database()
         #for demo, location info is generated 
-        newyork_lat = random.random() * random.randint(-1, 1) / 50 + 40.668435
-        newyork_long = random.random() * random.randint(-1, 1) / 50 + -73.948389
-        db.add_record(firstname, lastname, grade, newyork_lat, newyork_long)
+        #newyork_lat = random.random() * random.randint(-1, 1) / 50 + 40.668435
+        #newyork_long = random.random() * random.randint(-1, 1) / 50 + -73.948389
+        db.add_record(firstname, lastname, grade)
         st.success(f"Student {firstname} {lastname} is added to the database.")
 
        

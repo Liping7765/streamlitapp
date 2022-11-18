@@ -9,12 +9,12 @@ from react_components import st_custom_selector
 def filter_by_grade(rows, grade):
 
     if grade == 0:
-        return [row[:4] for row in rows]
+        return rows
 
     result = []
     for row in rows :
         if row[3] == grade :
-            result.append(row[:4])
+            result.append(row)
 
     return result 
 

@@ -31,7 +31,7 @@ function CustomSelector() {
         />
 
         <img 
-        src= "https://blog.knoldus.com/wp-content/uploads/2020/10/React-featured.png"
+        src= "https://miro.medium.com/proxy/1*HSisLuifMO6KbLfPOKtLow.jpeg"
         className = "center"
         alt='react_image'
         />

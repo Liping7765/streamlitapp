@@ -43,16 +43,16 @@ class Database:
 
     # Perform query.
     # Uses st.experimental_memo to only rerun when the query changes or after 10 min.  
-    def add_record(self, firstname, lastname, grade, lat, longi):
+    def add_record(self, firstname, lastname, grade):
         
         @st.experimental_memo(ttl=600)
-        def add(firstname, lastname, grade, lat, longi):
-            sql = ('INSERT INTO students(firstname, lastname, grade, latitude, longtitude)'
-                        f' VALUES ( "{firstname}", "{lastname}", {grade}, {lat}, {longi} )')
+        def add(firstname, lastname, grade):
+            sql = ('INSERT INTO students(firstname, lastname, grade)'
+                        f' VALUES ( "{firstname}", "{lastname}", {grade})')
             self.run_query(sql)
             self.conn.commit()
 
-        return add(firstname, lastname, grade, lat, longi)
+        return add(firstname, lastname, grade)
         
     def update_record_with_id(self, id, values):
 
@@ -68,10 +68,10 @@ class Database:
             firstname, lastname, grade = values
 
             sql = f"""
-                    UPDATE STUDENTS 
+                    UPDATE students 
                     SET FIRSTNAME = "{firstname}",
                         LASTNAME = "{lastname}",
-                        GRADE = "{grade}"
+                        GRADE = {grade}
                     WHERE student_id = {id}
                 """
             self.run_query(sql)
@@ -101,4 +101,5 @@ class Database:
             self.conn.commit()
 
         return delete()
+
 
